@@ -1,5 +1,0 @@
----
-docker_image: "minio/minio"
-web_port: 9001
-minio_access_key: minio
-minio_secret_key: 123minio
