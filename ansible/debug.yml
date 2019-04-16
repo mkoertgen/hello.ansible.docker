@@ -1,0 +1,5 @@
+---
+- hosts: all
+  tasks:
+  - import_tasks: debug_tasks.yml
+  #- include_tasks: common_tasks.yml

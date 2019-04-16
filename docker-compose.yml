@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  myhost:
+    # panubo/sshd:1.0.2, sickp/alpine-sshd:7.5-r2
+    image: hermsi/alpine-sshd:latest
+    ports: ['2222:22']
+    environment:
+      ROOT_PASSWORD: ${PASSWORD}
+
+  ansible:
+    image: willhallonline/ansible:2.7-alpine-3.9
+    working_dir: /ansible
+    environment:
+      # cf.: https://docs.ansible.com/ansible/latest/reference_appendices/config.html#ansible-configuration-settings
+      ANSIBLE_HOST_KEY_CHECKING: 'False'
+      ANSIBLE_BECOME_METHOD: sudo
+      ANSIBLE_BECOME_USER: root
+      ANSIBLE_CONFIG: ansible.cfg
+    command: ./deploy.sh site.yml dev ${PASSWORD} --check
+    depends_on: ['myhost']
+    volumes:
+      - ansible_roles:/root/.ansible/roles/
+      - ./ansible/:/ansible/
+
+volumes:
+  ansible_roles: {}
+
+

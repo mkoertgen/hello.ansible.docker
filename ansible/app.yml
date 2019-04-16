@@ -1,0 +1,5 @@
+---
+- name: Update application
+  hosts: app
+  tasks:
+    - import_tasks: debug_tasks.yml
