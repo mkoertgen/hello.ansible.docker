@@ -8,5 +8,3 @@ Useful for lightweight Ansible development and following best practices.
 ```console
 docker-compose run --rm ansible ./deploy.sh
 ```
-
-TODO: Ansible vault for the `ANSIBLE_BECOME_password`.
